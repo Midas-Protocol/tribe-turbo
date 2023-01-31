@@ -79,9 +79,9 @@ contract TurboSafeTest is DSTestPlus {
         asset.approve(address(safe), type(uint256).max);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                       DEPOSIT/WITHDRAWAL TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testDeposit(uint128 amount, address to) public {
         if (amount == 0) amount = 1;
@@ -122,9 +122,9 @@ contract TurboSafeTest is DSTestPlus {
         assertEq(assetCToken.balanceOfUnderlying(address(safe)), 0);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              BOOST TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testFailBoostNotEnoughCollateral(
         uint128 underlyingAmount,
@@ -270,9 +270,9 @@ contract TurboSafeTest is DSTestPlus {
         assertEq(master.getTotalBoostedAgainstCollateral(asset), feiAmount);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              LESS TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testBoostAndLess(
         uint128 boostAmount,
@@ -308,9 +308,9 @@ contract TurboSafeTest is DSTestPlus {
         assertEq(master.getTotalBoostedAgainstCollateral(asset), delta);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              SLURP TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testFailSlurpUntrustedVault(ERC4626 untrustedVault) public {
         if (untrustedVault == vault) revert();
@@ -363,9 +363,9 @@ contract TurboSafeTest is DSTestPlus {
         assertEq(fei.balanceOf(address(safe)), safeInterestAmount);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              SWEEP TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testFailSweepVaultShares(address to, uint256 amount) public {
         if (amount == 0) amount = 1;

@@ -23,9 +23,9 @@ import {ENSReverseRecordAuth} from "./ens/ENSReverseRecordAuth.sol";
 contract TurboMaster is Auth, ENSReverseRecordAuth {
     using SafeTransferLib for ERC20;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                IMMUTABLES
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Turbo Fuse Pool the Safes will interact with.
     Comptroller public immutable pool;
@@ -33,9 +33,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
     /// @notice The Fei token on the network.
     ERC20 public immutable fei;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Turbo Master contract.
     /// @param _pool The Turbo Fuse Pool the Master will use.
@@ -56,9 +56,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         safes.push(TurboSafe(address(0)));
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                             BOOSTER STORAGE
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Booster module used by the Master and its Safes.
     TurboBooster public booster;
@@ -76,9 +76,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         emit BoosterUpdated(msg.sender, newBooster);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              CLERK STORAGE
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Clerk module used by the Master and its Safes.
     TurboClerk public clerk;
@@ -96,9 +96,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         emit ClerkUpdated(msg.sender, newClerk);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                   DEFAULT SAFE AUTHORITY CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The default authority to be used by created Safes.
     Authority public defaultSafeAuthority;
@@ -117,9 +117,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         emit DefaultSafeAuthorityUpdated(msg.sender, newDefaultSafeAuthority);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              SAFE STORAGE
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The total Fei currently boosting Vaults.
     uint256 public totalBoosted;
@@ -145,9 +145,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         return safes;
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           SAFE CREATION LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted when a new Safe is created.
     /// @param user The user who created the Safe.
@@ -189,9 +189,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         FuseAdmin(pool.admin())._setWhitelistStatuses(users, enabled);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           SAFE CALLBACK LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Callback triggered whenever a Safe boosts a Vault.
     /// @param asset The asset of the Safe.
@@ -264,9 +264,9 @@ contract TurboMaster is Auth, ENSReverseRecordAuth {
         getTotalBoostedAgainstCollateral[asset] -= feiAmount;
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               SWEEP LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted a token is sweeped from the Master.
     /// @param user The user who sweeped the token from the Master.

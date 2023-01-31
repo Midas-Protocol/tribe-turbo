@@ -79,9 +79,9 @@ contract TurboGibberTest is DSTestPlus {
         gibber = new TurboGibber(master, address(this), Authority(address(0)));
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              IMPOUND TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testImpound(
         uint128 depositAmount,
@@ -116,9 +116,9 @@ contract TurboGibberTest is DSTestPlus {
         assertEq(safe.previewRedeem(safe.balanceOf(address(to))), depositAmount - assetAmount);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           IMPOUND ALL TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testImpoundAll(
         uint128 depositAmount,

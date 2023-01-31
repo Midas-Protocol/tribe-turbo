@@ -19,9 +19,9 @@ import {ENSReverseRecordAuth} from "../ens/ENSReverseRecordAuth.sol";
 contract TurboGibber is Auth, ReentrancyGuard, ENSReverseRecordAuth {
     using SafeTransferLib for Fei;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                IMMUTABLES
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Master contract.
     /// @dev Used to validate Safes are legitimate.
@@ -33,9 +33,9 @@ contract TurboGibber is Auth, ReentrancyGuard, ENSReverseRecordAuth {
     /// @notice The Fei cToken in the Turbo Fuse Pool.
     CERC20 public immutable feiTurboCToken;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Turbo Gibber contract.
     /// @param _master The Master of the Gibber.
@@ -56,9 +56,9 @@ contract TurboGibber is Auth, ReentrancyGuard, ENSReverseRecordAuth {
         fei.safeApprove(address(feiTurboCToken), type(uint256).max);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           ATOMIC IMPOUND LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted an impound is executed.
     /// @param user The user who executed the impound.

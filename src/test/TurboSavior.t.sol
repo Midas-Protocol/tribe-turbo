@@ -83,9 +83,9 @@ contract TurboSaviorTest is DSTestPlus {
         savior = new TurboSavior(master, address(this), Authority(address(0)));
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               SAVE TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testSave(
         uint64 depositAmount,

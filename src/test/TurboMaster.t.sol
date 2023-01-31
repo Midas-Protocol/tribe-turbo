@@ -44,9 +44,9 @@ contract TurboMasterTest is DSTestPlus {
         assertEq(master.getAllSafes().length, 1);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                      MODULE CONFIGURATION TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testSetBooster(TurboBooster booster) public {
         master.setBooster(booster);
@@ -60,9 +60,9 @@ contract TurboMasterTest is DSTestPlus {
         assertEq(address(master.clerk()), address(clerk));
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                  DEFAULT AUTHORITY CONFIGURATION TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testSetDefaultSafeAuthority(Authority authority) public {
         master.setDefaultSafeAuthority(authority);
@@ -80,9 +80,9 @@ contract TurboMasterTest is DSTestPlus {
         assertEq(address(safe.authority()), address(defaultSafeAuthority));
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                         SAFE CREATION TESTS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     function testFailCreateWithNoCTokenMapped() public {
         master.createSafe(asset);

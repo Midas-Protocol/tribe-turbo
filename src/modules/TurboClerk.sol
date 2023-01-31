@@ -12,18 +12,18 @@ import {ENSReverseRecordAuth} from "../ens/ENSReverseRecordAuth.sol";
 /// @author Transmissions11
 /// @notice Fee determination module for Turbo Safes.
 contract TurboClerk is Auth, ENSReverseRecordAuth {
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Turbo Clerk contract.
     /// @param _owner The owner of the Clerk.
     /// @param _authority The Authority of the Clerk.
     constructor(address _owner, Authority _authority) Auth(_owner, _authority) {}
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                         DEFAULT FEE CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The default fee on Safe interest taken by the protocol.
     /// @dev A fixed point number where 1e18 represents 100% and 0 represents 0%.
@@ -45,9 +45,9 @@ contract TurboClerk is Auth, ENSReverseRecordAuth {
         emit DefaultFeePercentageUpdated(msg.sender, newDefaultFeePercentage);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                         CUSTOM FEE CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Maps collaterals to their custom fees on interest taken by the protocol.
     /// @dev A fixed point number where 1e18 represents 100% and 0 represents 0%.
@@ -97,9 +97,9 @@ contract TurboClerk is Auth, ENSReverseRecordAuth {
         emit CustomFeePercentageUpdatedForSafe(msg.sender, safe, newFeePercentage);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           ACCOUNTING LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Returns the fee on interest taken by the protocol for a Safe.
     /// @param safe The Safe to get the fee percentage for.

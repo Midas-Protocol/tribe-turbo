@@ -22,9 +22,9 @@ import {ENSReverseRecordAuth} from "../ens/ENSReverseRecordAuth.sol";
 contract TurboSavior is Auth, ReentrancyGuard, ENSReverseRecordAuth {
     using FixedPointMathLib for uint256;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                IMMUTABLES
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Master contract.
     /// @dev Used to validate Safes are legitimate.
@@ -39,9 +39,9 @@ contract TurboSavior is Auth, ReentrancyGuard, ENSReverseRecordAuth {
     /// @notice The Fei cToken in the Turbo Fuse Pool.
     CERC20 public immutable feiTurboCToken;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Turbo Savior contract.
     /// @param _master The Master of the Savior.
@@ -61,9 +61,9 @@ contract TurboSavior is Auth, ReentrancyGuard, ENSReverseRecordAuth {
         feiTurboCToken = pool.cTokensByUnderlying(fei);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               LINE LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The minimum percentage debt must make up of the borrow limit for a Safe to be saved.
     /// @dev A fixed point number where 1e18 represents 100% and 0 represents 0%.
@@ -85,9 +85,9 @@ contract TurboSavior is Auth, ReentrancyGuard, ENSReverseRecordAuth {
         emit MinDebtPercentageForSavingUpdated(msg.sender, newMinDebtPercentageForSaving);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               SAVE LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted a save is executed.
     /// @param user The user who executed the save.

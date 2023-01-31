@@ -13,18 +13,18 @@ import {ENSReverseRecordAuth} from "../ens/ENSReverseRecordAuth.sol";
 /// @author Transmissions11
 /// @notice Boost authorization module.
 contract TurboBooster is Auth, ENSReverseRecordAuth {
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Turbo Booster contract.
     /// @param _owner The owner of the Booster.
     /// @param _authority The Authority of the Booster.
     constructor(address _owner, Authority _authority) Auth(_owner, _authority) {}
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                       GLOBAL FREEZE CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Whether boosting is currently frozen.
     bool public frozen;
@@ -43,9 +43,9 @@ contract TurboBooster is Auth, ENSReverseRecordAuth {
         emit FreezeStatusUpdated(msg.sender, freeze);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                      VAULT BOOST CAP CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     ERC4626[] public boostableVaults;
 
@@ -79,9 +79,9 @@ contract TurboBooster is Auth, ENSReverseRecordAuth {
         emit BoostCapUpdatedForVault(msg.sender, vault, newBoostCap);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                      COLLATERAL BOOST CAP CONFIGURATION
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Maps collateral types to the cap on the amount of Fei boosted against them.
     mapping(ERC20 => uint256) public getBoostCapForCollateral;
@@ -101,9 +101,9 @@ contract TurboBooster is Auth, ENSReverseRecordAuth {
         emit BoostCapUpdatedForCollateral(msg.sender, collateral, newBoostCap);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                           AUTHORIZATION LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Returns whether a Safe is authorized to boost a Vault.
     /// @param safe The Safe to check is authorized to boost the Vault.

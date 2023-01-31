@@ -20,9 +20,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
     using SafeTransferLib for ERC20;
     using FixedPointMathLib for uint256;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                IMMUTABLES
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The Master contract that created the Safe.
     /// @dev Fees are paid directly to the Master, where they can be swept.
@@ -40,9 +40,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
     /// @notice The cToken that accepts the asset in the Turbo Fuse Pool.
     CERC20 public immutable assetTurboCToken;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               CONSTRUCTOR
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Creates a new Safe that accepts a specific asset.
     /// @param _owner The owner of the Safe.
@@ -92,9 +92,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         fei.safeApprove(address(feiTurboCToken), type(uint256).max);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                SAFE STORAGE
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice The current total amount of Fei the Safe is using to boost Vaults.
     uint256 public totalFeiBoosted;
@@ -103,9 +103,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
     /// @dev Used to determine the fees to be paid back to the Master.
     mapping(ERC4626 => uint256) public getTotalFeiBoostedForVault;
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                MODIFIERS
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @dev Checks the caller is authorized using either the Master's Authority or the Safe's local Authority.
     modifier requiresLocalOrMasterAuth() {
@@ -142,9 +142,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         _;
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                              ERC4626 LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Called after any type of deposit occurs.
     /// @param assetAmount The amount of assets being deposited.
@@ -168,9 +168,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         return assetTurboCToken.balanceOf(address(this)).mulWadDown(assetTurboCToken.exchangeRateStored());
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                            BOOST/LESS LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted when a Vault is boosted by the Safe.
     /// @param user The user who boosted the Vault.
@@ -242,9 +242,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         if (feiAmount != 0) require(feiTurboCToken.repayBorrow(feiAmount) == 0, "REPAY_FAILED");
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               SLURP LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted when a Vault is slurped from by the Safe.
     /// @param user The user who slurped the Vault.
@@ -288,9 +288,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         if (protocolFeeAmount != 0) fei.transfer(address(master), protocolFeeAmount);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                               SWEEP LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted a token is sweeped from the Safe.
     /// @param user The user who sweeped the token from the Safe.
@@ -316,9 +316,9 @@ contract TurboSafe is Auth, ERC4626, ReentrancyGuard {
         token.safeTransfer(to, amount);
     }
 
-    /*///////////////////////////////////////////////////////////////
+    /*--------------------------------------------------------------/
                                GIB LOGIC
-    //////////////////////////////////////////////////////////////*/
+    --------------------------------------------------------------*/
 
     /// @notice Emitted when a Safe is gibbed.
     /// @param user The user who gibbed the Safe.
